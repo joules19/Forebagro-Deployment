@@ -1,0 +1,139 @@
+#in{
+background-color: #3D5235;
+}
+
+.form-logo
+{
+position: absolute;
+top: calc(-45px/2);
+left: calc(53% - 50px);
+overflow: hidden;
+width: 90px;
+height: 70px;
+border-radius: 50%;
+}
+
+.header
+{
+margin-top: 25px;
+margin-bottom: 0px;
+text-align: center;
+font-weight: bold;
+}
+
+.header-logo {
+  width: 13%;
+  float: left;
+  position: fixed;
+}
+
+.login-header {
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/static/images/fac1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding-top: 20px;
+      padding-bottom: 200px;
+      margin-bottom: 0;
+}
+
+
+.form-container input[type='text'], .form-container input[type='password']
+{
+border: none;
+background-color: rgb(232, 240, 254) !important;
+outline: none;
+height: 35px;
+color: black;
+font-size: 14px;
+margin-top:0px;
+margin-bottom:0px;
+}
+
+.submitbtn
+{
+border:none;
+border-radius: 10px;
+background: #A8B63A;
+color:#fff;
+outline: none;
+height: 35px;
+width: 100%;
+font-size: 16px;
+cursor: pointer;
+margin-top:38px;
+margin-bottom:30px;
+}
+
+.submitbtn:hover
+{
+background: #BBBDC5;
+color: #262626 ;
+}
+
+
+.form-container
+{
+    border-radius: 10px;
+    width: 300px;
+    height: 372px;
+    bottom: -50px;
+    margin: 6% auto;
+    position: relative;
+    padding: 20px;
+    background: #fff;
+    margin-bottom: 37px;
+}
+
+.form-body{
+margin-top: 20px;
+}
+
+.footer {
+  left: 10px;
+  bottom: 0;
+  width: 100%;
+  padding: 1px 10px 0px;
+  color: #fff;
+  height: 35px;
+  padding-top: 10px;
+  position: fixed;
+}
+
+.footer p {
+  font-size: 11.5px;
+  text-align: justify;
+  padding-right: 20px;
+  font-weight: bold;
+}
+
+.footer .copyright {
+  text-align: center;
+}
+
+form .alert {
+padding:0;
+margin-top: 0;
+position: relative;
+font-size: 11px;
+margin-bottom: 3px;
+}
+
+form .alert .close {
+display: none;
+}
+
+form .alert-danger {
+    color: #a94442;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+@media only screen and (max-width: 700px) {
+    .header-logo {
+      width: 21%;
+      float: left;
+      position: fixed;
+}
+
+}

@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load humanize %}
+{% block content %}
+
+	{% csrf_token %}
+	<div class="content-wrapper" id="tab">
+		<div name="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span class="fa fa-info-circle"></span>Transaction Details
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="content padding table-responsive">
+
+				<table class="transaction-detail">
+					<tr>
+						<th width="150px"><h4><span class="label label-primary">Clientele Name</span></h4></th>
+						<td><strong>: {{transactions.clientele_name}}</strong></td>
+					</tr>
+
+					<tr>
+						<th><h4><span class="label label-primary">Product Name</span></h4></th>
+						<td><strong>: {{transactions.product_name}}</strong></td>
+					</tr>
+
+					<tr>
+						<th><h4><span class="label label-primary">Transaction Ref.</span></h4></th>
+						<td><strong>: {{transactions.transaction_reference}}</strong></td>
+					</tr>
+
+					<tr>
+						<th><h4><span class="label label-primary">Docket Number</span></h4></th>
+						<td><strong>: {{transactions.docket_number}}</strong></td>
+					</tr>
+
+					<tr>
+						<th><h4><span class="label label-primary">Waybill Number</span></h4></th>
+						<td><strong>: {{transactions.waybill_number}}</strong></td>
+					</tr>
+
+					<tr>
+						<th><h4><span class="label label-primary">Narration</span></h4></th>
+						<td><strong>: {{transactions.narration}}</strong></td>
+					</tr>
+
+					<tr>
+						<th><h4><span class="label label-primary">Product Quantity</span></h4></th>
+						<td><strong>: {{transactions.product_quantity|stringformat:"0.2f"|intcomma|intcomma}}</strong></td>
+					</tr>
+
+					{% if transactions.product_discount %}
+					<tr>
+						<th><h4><span class="label label-primary">Product Discount</span></h4></th>
+						<td><strong>: {{transactions.product_discount}}</strong></td>
+					</tr>
+					{% else %}
+					<tr>
+						<th><h4><span class="label label-primary">Product Discount</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{% endif %}
+
+					<tr>
+						<th><h4><span class="label label-primary">Product Rate</span></h4></th>
+						<td><strong>: &#8358; {{transactions.product_rate|stringformat:"0.2f"|intcomma|intcomma}}</strong></td>
+					</tr>
+
+					<tr>
+						<th><h4><span class="label label-primary">Quantity Value</span></h4></th>
+						<td><strong>: &#8358; {{transactions.quantity_value|stringformat:"0.2f"|intcomma}}</strong></td>
+					</tr>
+
+					{% if transactions.deductions %}
+					<tr>
+						<th><h4><span class="label label-primary">Deductions</span></h4></th>
+						<td><strong>: &#8358; {{transactions.deductions|stringformat:"0.2f"|intcomma}}</strong></td>
+					</tr>
+					{% else %}
+					<tr>
+						<th><h4><span class="label label-primary">Deductions</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{% endif %}
+
+
+					<tr>
+						<th><h4><span class="label label-primary">Expected Oil</span></h4></th>
+						<td><strong>: {{transactions.expected_oil}}</strong></td>
+					</tr>
+
+					{% if transactions.expected_cake %}
+					<tr>
+						<th><h4><span class="label label-primary">Expected Cake</span></h4></th>
+						<td><strong>: {{transactions.expected_cake}}</strong></td>
+					</tr>
+					{% else %}
+					<tr>
+						<th><h4><span class="label label-primary">Expected Cake</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{% endif %}
+
+					{% if transactions.cake_value %}
+					<tr>
+						<th><h4><span class="label label-primary">Cake Value</span></h4></th>
+						<td><strong>: &#8358; {{transactions.cake_value|stringformat:"0.2f"|intcomma}}</strong></td>
+					</tr>
+					{% else %}
+					<tr>
+						<th><h4><span class="label label-primary">Cake Value</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{% endif %}
+
+					{% if transactions.diesel_litres %}
+					<tr>
+						<th><h4><span class="label label-primary">Diesel Litres</span></h4></th>
+						<td><strong>: {{transactions.diesel_litres}} &nbsp;litres</strong></td>
+					</tr>
+					{%else%}
+					<tr>
+						<th><h4><span class="label label-primary">Diesel Litres</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+					{% if transactions.diesel_rate %}
+					<tr>
+						<th><h4><span class="label label-primary">Diesel Rate</span></h4></th>
+						<td><strong>: &#8358; {{transactions.diesel_rate}}</strong></td>
+					</tr>
+					{%else%}
+					<tr>
+						<th><h4><span class="label label-primary">Diesel Rate</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+					{% if transactions.diesel_value %}
+					<tr>
+						<th><h4><span class="label label-primary">Diesel Value</span></h4></th>
+						<td><strong>: &#8358; {{transactions.diesel_value|stringformat:"0.2f"|intcomma}}</strong></td>
+					</tr>
+					{%else%}
+					<tr>
+					    <th><h4><span class="label label-primary">Diesel Value</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+
+					{% if transactions.gen_diesel_litres %}
+					<tr>
+						<th><h4><span class="label label-primary">Gen. Diesel Litres</span></h4></th>
+						<td><strong>: {{transactions.gen_diesel_litres}} &nbsp;litres</strong></td>
+					</tr>
+					{%else%}
+					<tr>
+						<th><h4><span class="label label-primary">Gen. Diesel Litres</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+					{% if transactions.gen_diesel_rate %}
+					<tr>
+						<th><h4><span class="label label-primary">Gen. Diesel Rate</span></h4></th>
+						<td><strong>: &#8358; {{transactions.gen_diesel_rate}}</strong></td>
+					</tr>
+					{%else%}
+					<tr>
+						<th><h4><span class="label label-primary">Gen. Diesel Rate</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+					{% if transactions.gen_diesel_value %}
+					<tr>
+						<th><h4><span class="label label-primary">Gen. Diesel Value</span></h4></th>
+						<td><strong>: &#8358; {{transactions.gen_diesel_value|stringformat:"0.2f"|intcomma}}</strong></td>
+					</tr>
+					{%else%}
+					<tr>
+						<th><h4><span class="label label-primary">Gen. Diesel Value</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+					{% if transactions.other_costs %}
+					<tr>
+						<th><h4><span class="label label-primary">Other Costs</span></h4></th>
+						<td><strong>: &#8358; {{transactions.other_costs|stringformat:"0.2f"|intcomma}}</strong></td>
+					</tr>
+					{%else%}
+					<tr>
+						<th><h4><span class="label label-primary">Other Costs</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+					<tr>
+						<th><h4><span class="label label-primary">Transaction Cost</span></h4></th>
+						<td><strong>: &#8358; {{transactions.transaction_cost|stringformat:"0.2f"|intcomma}}</strong></td>
+					</tr>
+
+				    {% if transactions.transaction_income %}
+					<tr>
+						<th><h4><span class="label label-primary">Transaction Income</span></h4></th>
+						<td><strong>: &#8358; {{transactions.transaction_income|stringformat:"0.2f"|intcomma}}</strong></td>
+					</tr>
+					{%else%}
+					<tr>
+						<th><h4><span class="label label-primary">Transaction Income</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+					{% if transactions.amount_paid %}
+				    <tr>
+    					<th><h4><span class="label label-primary">Amount Paid</span></h4></th>
+    					<td><strong>: &#8358; {{transactions.amount_paid|stringformat:"0.2f"|intcomma}}</strong></td>
+				    </tr>
+				    {%else%}
+					<tr>
+						<th><h4><span class="label label-primary">Amount Paid</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{%endif%}
+
+					<tr>
+						<th><h4><span class="label label-primary">Date Initiated</span></h4></th>
+						<td><strong>: {{transactions.date_initiated}}</strong></td>
+					</tr>
+				</table>
+				<br><br><hr>
+					<a href="{% url 'transactions:show_sales' %}" class="btn btn-danger"><i class="fa fa-remove fa-lg white" aria-hidden="true"></i> Reject</a>
+					{% if perms.transactions.change_salestransaction %}
+					<a href="{% url 'transactions:approve_sales' id=transactions.id %}" class="btn btn-primary"><i class="fa fa-check-circle white fa-lg" aria-hidden="true"></i> Approve</a>
+					{% else %}
+					<a href="" id="approve" class="btn btn-primary"><i class="fa fa-check-circle white fa-lg" aria-hidden="true"></i> Approve</a>
+					{% endif %}
+			</div>
+
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".form-control").css({'height': '32px', 'width': '500px'});
+			$("#tab").css({'width': '750px', 'margin-left': '70px'});
+			$(".wrapper").css({'justify-content': 'center', 'display': 'flex'});
+			$("th").css({'font-size': '20px'});
+			function showTouched(e){
+				alert(e.data.message);
+			}
+			var approvemsg = { message: 'You are not authorized to make this action!'};
+			$("#approve").on("click", approvemsg, showTouched);
+			});
+</script>
+{% endblock content %}

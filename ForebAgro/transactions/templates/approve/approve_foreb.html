@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+	{% csrf_token %}
+	<div class="content-wrapper">
+		<div name="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span class="fa fa-user"></span>Transaction Details
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="content padding table-responsive">
+
+				<table class="transaction-detail">
+
+					<tr>
+						<th width="150px"><h4><span class="label label-primary">Clientele Name</span></h4></th>
+						<td><strong>: {{transactions.clientele_name}}</strong></td>
+					</tr>
+					<tr>
+						<th><h4><span class="label label-primary">Transaction Ref.</span></h4></th>
+						<td><strong>: {{transactions.transaction_reference}}</strong></td>
+					</tr>
+					<tr>
+						<th><h4><span class="label label-primary">Amount Paid</span></h4></th>
+						<td><strong>: &#8358; {{transactions.amount_paid}}</strong></td>
+					</tr>
+					<tr>
+						<th><h4><span class="label label-primary">narration</span></h4></th>
+						<td><strong>: {{transactions.narration}}</strong></td>
+					</tr>
+					<tr>
+						<th><h4><span class="label label-primary">Comments</span></h4></th>
+						<td><strong>: {{transactions.comments}}</strong></td>
+					</tr>
+					<tr>
+						<th><h4><span class="label label-primary">Date Initiated</span></h4></th>
+						<td><strong>: {{transactions.date_initiated}}</strong></td>
+					</tr>
+				</table>
+				<br><br><hr>
+					<a href="{% url 'transactions:show_foreb' %}" class="btn btn-danger"><i class="fa fa-remove fa-lg white" aria-hidden="true"></i> Reject</a>
+					<a href="{% url 'transactions:approve_foreb' id=transactions.id %}" class="btn btn-primary"><i class="fa fa-check-circle white fa-lg" aria-hidden="true"></i> Approve</a>
+
+			</div>
+
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+
+
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".form-control").css({'height': '32px', 'width': '500px'});
+			$("#tab").css({'width': '600px', 'margin-left': '70px'});
+			$(".wrapper").css({'justify-content': 'center', 'display': 'flex'});
+			$("th").css({'font-size': '20px'});
+</script>
+{% endblock content %}

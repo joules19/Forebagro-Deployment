@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+  <meta name="viewport" content="width=device-width" initial-scale=1>
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <title>Forebagro</title>
+  <link rel="short icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+  <script type="text/javascript" src="{% static 'js/script.js' %}" defer></script>
+    <style>
+       .features{
+        padding: 25px 10px;
+        margin-top: -20px;
+        background-image:  linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.3)),url("{% static 'images/almond.jpg' %}");
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="brand-title"><span><a href="{% url 'home' %}"><img class="logo" src= "{% static 'images/foreblogo.png' %}"></a></span></div>
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div class="navbar-links">
+        <ul style="font-family: 'Alata';">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="features">
+      <h1 style="font-size: 40px;font-family: 'Alata';font-weight:lighter;color: #fff">About <span style="color:#89c227">Foreb Agro</span> Product's</h1>
+      <p class="title-paragraph" style="font-family: 'Alata';font-weight:lighter;color: #fff">Foreb Agro Products is a home grown company registered and operational in Nigeria in accordance with the Companies and Allied Matters Act. We are dedicated solely to processing Oil Palm kernel into Palm Kernel Oil (PKO) and Palm Kernel Cake (PKC) for use as intermediates in further
+        production processes. At Foreb Agro, we have a clear, consistent framework to deliver quality products and services.
+        We leave nothing to chance. With a factory located in Ondo State, Nigeria, a global distribution network, and a current production capacity of 720,000 metric tonnes of PKO per month and 900,000 metric tonnes of PKC per month, our products are readily available to the market.</p>
+      <div class="container" style="font-family: 'Alata';">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="feature-box">
+              <div class="feature-image">
+                <img src="{% static 'images/palm.jpg' %}" alt="">
+              </div>
+              <div class="feature-details">
+                <h4 style="color:#89c227">Palm Kernel</h4>
+                <p>Popular for its healing properties across the southern and eastern part of Nigeria, palm kernel is known to offer numerous health benefits that help prevents and heal life-threatening illnesses.
+                  It is also useful for cooking as it is free of cholesterol. As a matter of fact, medical practitioners do advise people suffering from heart problems and high cholesterol level to make use of palm kernel oil when cooking because it is more beneficial to their health.
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-box">
+              <div class="feature-image">
+                <img src="{% static 'images/pkc2.jpg' %}" alt="">
+              </div>
+              <div class="feature-details">
+                <h4 style="color:#89c227">Palm Kernel Cake (PKC)</h4>
+                <p>Palm kernel cake by itself is a medium grade protein feed and with its high fibre content it is often consider as suitable for feeding of ruminants.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-box">
+              <div class="feature-image">
+                <img src="{% static 'images/oil.png' %}" alt="">
+              </div>
+              <div class="feature-details">
+                <h4 style="color:#89c227">Palm Kernel Oil (PKO)</h4>
+                <p>Crude palm oil is edible oil which is extracted from the pulp of fruit of oil palms. With zero cholesterol and high anti-oxidants, it makes a perfect replacement for lard and butter in the cooking process.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br><hr style="border: 0.7px solid grey;"><br>
+      <h1 style="font-size: 40px;font-family: 'Alata';font-weight:lighter;color: #fff">Our <span style="color:#89c227">Process</span></h1>
+      <p class="title-paragraph" style="font-family: 'Alata';font-weight:lighter;color: #fff">At Foreb Agro, our major raw material
+        (Oil Palm kernel) is sourced locally, primarily from Western and Central Nigeria. On arrival, we test these materials for quality,
+        oil content and nutritional value at our laboratory. After quality confirmation, the entirety of the raw materials are loaded at the factory where they are crushed, pressed and processed
+        to obtain our two distinct products, palm kernel oil (PKO) and palm kernel cake (PKC). These products are subsequently subjected to Q&C to ensure that they compete favourably in the market
+        as the demand for these two products is very high. The major customers of our PKO are vegetable oil refineries, and producers of toiletries and personal care products. Our PKC is typically
+        courted by animal feed millers and piggery farmers.</p><br><hr style="border: 1px solid grey;"><br>
+      <h1 style="font-size: 40px;font-family: 'Alata';font-weight:lighter;color: #fff">Our <span style="color:#89c227">Supply Chain</span></h1>
+      <p class="title-paragraph" style="font-family: 'Alata';font-weight:lighter;color: #fff">We supply our products to customers both within and outside the shores of Nigeria. Our fleet of delivery
+        trucks allows us to deliver to customers within Nigeria, and our export expertise, which has developed immensely over the years, enables us provide our products to customers abroad.</p>
+    </section>
+
+  <section class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="{% static 'images/foreblogo.png' %}" alt="" class="footer-logo">
+            <p>Address:
+              Head Office & Factory
+              Plots 2 & 3, Block Q Ilesa Road,
+              Government Industrial Estate,
+              Akure, Ondo State</p>
+          </div>
+
+          <div class="col-md-4">
+            <h4 style="font-family: 'Alata';">Quick Contact</h4>
+            <p><i class="fa fa-phone-square"></i> (+234) 8174620250 | (+234) 8174620243</p>
+            <p><i class="fa fa-envelope"></i> info@forebagroproducts.com | sales@forebagroproducts.com</p>
+            <p><i class="fa fa-whatsapp"></i> (+234) 8035092513</p>
+            <p><i class="fa fa-home"></i> Akure, Ondo State, Nigeria</p>
+          </div>
+          <div class="col-md-4">
+            <h4 style="font-family: 'Alata';">Follow Us On</h4>
+            <p><i class="fa fa-facebook-official"></i> Facebook</p>
+            <p><i class="fa fa-linkedin-square"></i> Linkedin</p>
+            <p><i class="fa fa-twitter"></i> Twitter</p>
+          </div>
+        </div><hr>
+        <p class="copyright"> Copyright &copy; 2020 Forebagro Products Nig. Ltd</p>
+      </div>
+        <a class="gotopbtn" href="#"><i class="fa fa-arrow-up"></i></a>
+    </section>
+  </body>
+</html>

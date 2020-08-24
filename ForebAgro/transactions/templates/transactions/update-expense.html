@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load bootstrap3%}
+{% block content %}
+
+	<div class="content-wrapper" id="tab">
+		<div class="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span class="fa fa-user"></span>Expense Transaction Update
+					</div>
+				</div>
+			</div>
+
+			<div class="content padding table-responsive">
+				<div class="wrapper">
+				<form method="post" action="">
+					{% csrf_token %}
+						{% bootstrap_form form %}
+					<br><hr>
+					<a href="{% url 'transactions:show_expense_user' %}" class="btn btn-warning"><i class="fa fa-trash-o white fa-lg" aria-hidden="true"></i> Cancel Update</a>
+					<button class="btn btn-primary"><i class="fa fa-floppy-o white " aria-hidden="true"></i> Save Update</button>
+				</form>
+					</div>
+			</div>
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+<script type="text/javascript">
+			$(document).ready(function(){
+				$('#id_quantity, #id_rate').on('input',function(e){
+					const quantity = parseInt($('#id_quantity').val()) || 0;
+					const rate = parseInt($('#id_rate').val()) || 0;
+					const total_cost = rate * quantity;
+					$('#id_total_cost').val(total_cost);
+				});
+				$(".form-control").css({'height': '32px', 'width': '500px'});
+				$("#tab").css({'width': '600px', 'margin-left': '70px'});
+				$(".wrapper").css({'justify-content': 'center', 'display': 'flex'});
+			});
+</script>
+{% endblock content %}

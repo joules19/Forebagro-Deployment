@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load humanize %}
+{% block content %}
+
+	{% csrf_token %}
+	<div class="content-wrapper" id="tab">
+		<div name="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span class="fa fa-info-circle"></span>Transaction Details
+					</div>
+				</div>
+			</div>
+			<div class="content padding table-responsive" id="wrapper">
+				<table class="transaction-detail">
+					<tr>
+						<th width="150px"><h4><span class="label label-primary">Clientele Name</span></h4></th>
+						<td><strong>: {{transactions.clientele_name}}</strong></td>
+					</tr>
+					<tr>
+						<th><h4><span class="label label-primary">Transaction Ref.</span></h4></th>
+						<td><strong>: {{transactions.transaction_reference}}</strong></td>
+					</tr>
+					{% if transactions.amount_paid %}
+					<tr>
+						<th><h4><span class="label label-primary">Amount Paid</span></h4></th>
+						<td><strong>: &#8358; {{transactions.amount_paid|stringformat:'0.2f'|intcomma}}</strong></td>
+					</tr>
+					{% else %}
+					<tr>
+						<th><h4><span class="label label-primary">Amount Paid</span></h4></th>
+						<td><strong>: </strong></td>
+					</tr>
+					{% endif %}
+
+					<tr>
+						<th><h4><span class="label label-primary">narration</span></h4></th>
+						<td><strong>: {{transactions.narration}}</strong></td>
+					</tr>
+					<tr>
+						<th><h4><span class="label label-primary">Comments</span></h4></th>
+						<td><strong>: {{transactions.comments}}</strong></td>
+					</tr>
+					<tr>
+						<th><h4><span class="label label-primary">Date Initiated</span></h4></th>
+						<td><strong>: {{transactions.date_initiated}}</strong></td>
+					</tr>
+				</table>
+				<br><br><hr>
+					<a href="{% url 'transactions:show_customer' %}" class="btn btn-danger"><i class="fa fa-remove fa-lg white" aria-hidden="true"></i> Reject</a>
+					{% if perms.transactions.change_customerdebttransaction %}
+					<a href="{% url 'transactions:approve_customer' id=transactions.id %}" class="btn btn-primary"><i class="fa fa-check-circle white fa-lg" aria-hidden="true"></i> Approve</a>
+					{% else %}
+					<a id="approve" href="" class="btn btn-primary"><i class="fa fa-check-circle white fa-lg" aria-hidden="true"></i> Approve</a>
+					{% endif %}
+			</div>
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".form-control").css({'height': '32px', 'width': '500px'});
+			$("#tab").css({'width': '750px', 'margin-left': '70px'});
+			$(".wrapper").css({'justify-content': 'center', 'display': 'flex'});
+			$("th").css({'font-size': '20px'});
+			function showTouched(e){
+				alert(e.data.message);
+			}
+			var approvemsg = { message: 'You are not authorized to make this action!'};
+			$("#approve").on("click", approvemsg, showTouched);
+			});
+</script>
+{% endblock content %}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+  <meta name="viewport" content="width=device-width" initial-scale=1>
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <title>Forebagro</title>
+  <link rel="short icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+  <script type="text/javascript" src="{% static 'js/script.js' %}" defer></script>
+    <style>
+      .content-box{
+          position: relative;
+          padding-top: 30px;
+          height: 600px;
+          top: 0;
+          display: flex;
+          justify-content: space-between;
+          background-image: linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0.1)), url("{% static 'images/kernel.jpg' %}");
+          background-position: center;
+          background-size: cover;
+          background-attachment: fixed;
+          opacity: 0.93;
+       }
+       body{
+        padding: 0;
+        margin: 0;
+        background: linear-gradient(to right, #dad299, #b0dab9);
+       }
+       .welcome{
+            padding: 0;
+            padding-top: 6px;
+            margin: 0;
+            margin-top: 50px;
+            background-image:  linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0.1)), url("{% static 'images/almond.jpg' %}");
+        }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="brand-title"><span><a href="{% url 'home' %}"><img class="logo" src= "{% static 'images/foreblogo.png' %}"></a></span></div>
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div class="navbar-links">
+        <ul style="font-family: 'Alata';">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  <div class="container">
+    <div class="social-box">
+      <a class="fa fa-facebook-square" href="">mejhgf</a>
+      <a class="fa fa-linkedin-square" href=""></a>
+      <a class="fa fa-twitter-square" href=""></a>
+    </div>
+    <div style="font-family: 'Alata';" class="gallery">
+      <div class="image-box active">
+        <img src="{% static 'images/join.jpg' %}" alt="">
+          <h6 style="font-family: 'Alata';font-weight: bold;" >1</h6>
+      </div>
+      <div class="image-box">
+        <img src="{% static 'images/foreb3.jpg' %}" alt="">
+          <h6 style="font-family: 'Alata';font-weight: bold;" >2</h6>
+      </div>
+      <div class="image-box">
+        <img src="{% static 'images/foreb2.jpg' %}" alt="">
+          <h6 style="font-family: 'Alata';font-weight: bold;" >3</h6>
+      </div>
+      <div class="image-box">
+        <img src="{% static 'images/foreb4.jpg' %}" alt="">
+          <h6 style="font-family: 'Alata';font-weight: bold;" >4</h6>
+      </div>
+    </div>
+  </div>
+
+  <section class="welcome">
+      <h1 style="font-size: 40px;font-family: 'Alata';font-weight:lighter;color: #fff">Welcome to <span style="color:#89c227">Foreb Agro!</span></h1>
+      <p class="title-paragraph" style="font-family: 'Alata';font-weight:lighter;color: #fff";>Foreb Agro Products is a home-grown company dedicated primarily
+        to the processing of oil palm kernel into Palm Kernel Oil (PKO) and Palm Kernel Cake (PKC) for use as intermediates in further production processes.
+        Our mission is to ensure that local demand for food products are satisfied through locally sourced inputs and resources rather than imports.
+        To this end, we have developed a clear, consistent framework to deliver quality products by empowering and building relationships with local farmers and other members of our value chain.</p>
+      <a href="{% url 'about' %}"><button style="font-size: 16px;font-family: 'Alata';font-weight:lighter;background-color:#89c227;color:#fff;"type="button" class="read-btn">Read More</button></a>
+  </section>
+
+  <div class="content-box">
+     <div class="content">
+     <div class="box">
+         <div class="icon">
+          <i class="fa fa-truck"></i>
+        </div>
+        <div class="box-content">
+          <h3>OUR SUPPLY CHAIN</h3>
+          <p>We supply our products to customers both within and outside the shores of Nigeria. Our fleet of delivery trucks allows us to deliver to customers within Nigeria, and
+            our export expertise, which has developed immensely over the years, enables us provide our products to customers abroad...</p>
+        </div>
+     </div>
+      <div class="box">
+        <div class="icon">
+          <img src="{% static 'images/icon5.jpg' %}">
+        </div>
+        <div class="box-content">
+          <h3>OUR PRODUCTS</i></h3>
+          <p>We are dedicated solely to processing Oil Palm kernel into Palm Kernel Oil (PKO) and Palm Kernel
+            Cake (PKC) for use as intermediates in further production processes. At Foreb Agro, we have a clear, consistent framework to deliver quality products and services...</p>
+        </div>
+     </div>
+     <div class="box">
+          <div class="icon">
+            <i class="fa fa-cogs"></i>
+          </div>
+        <div class="box-content">
+          <h3>OUR PROCESS</h3>
+          <p>At Foreb Agro, our major raw material (Oil Palm kernel) is sourced locally, primarily from Western and Central Nigeria. On arrival, we test these materials for quality,
+            oil content and nutritional value at our laboratory...</p>
+        </div>
+     </div><br>
+       <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+              <p style="font-family: 'Alata';" id="paragraph2">We provide a wide range of &nbsp;<span style="color:#89c227;font-family:'Lucida Console', Monaco, monospace">palm-kernel produce</span> to markets locally and internationally. Our networks and services enable us to maintain a strong position in the palm kernel
+                trading market and provide the best prices and services to our customers.</p>
+          </div>
+        </div>
+      </div>
+       <div class="col-md-4">
+            <a href="{% url 'contact' %}"><button id="enquiry-btn" style="font-size: 16px;font-family: 'Alata';font-weight:lighter;background-color:#89c227;color:#fff;"type="button" class="enquiry-btn">Enquiry Now</button></a>
+       </div>
+       </div>
+   </div>
+  <section class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="{% static 'images/foreblogo.png' %}" alt="" class="footer-logo">
+            <p>Address:
+              Head Office & Factory
+              Plots 2 & 3, Block Q Ilesa Road,
+              Government Industrial Estate,
+              Akure, Ondo State</p>
+          </div>
+
+          <div class="col-md-4">
+            <h4 style="font-family: 'Alata';">Quick Contact</h4>
+            <p><i class="fa fa-phone-square"></i> (+234) 8174620250 | (+234) 8174620243</p>
+            <p><i class="fa fa-envelope"></i> info@forebagroproducts.com | sales@forebagroproducts.com</p>
+            <p><i class="fa fa-whatsapp"></i> (+234) 8035092513</p>
+            <p><i class="fa fa-home"></i> Akure, Ondo State, Nigeria</p>
+          </div>
+          <div class="col-md-4">
+            <h4 style="font-family: 'Alata';">Follow Us On</h4>
+            <p><i class="fa fa-facebook-official"></i> Facebook</p>
+            <p><i class="fa fa-linkedin-square"></i> Linkedin</p>
+            <p><i class="fa fa-twitter"></i> Twitter</p>
+          </div>
+        </div><hr>
+        <p class="copyright"> Copyright &copy; 2020 Forebagro Products Nig. Ltd</p>
+      </div>
+      <a class="gotupbtn" href="#"><i class="fa fa-arrow-up"></i></a>
+    </section>
+  </body>
+</html>

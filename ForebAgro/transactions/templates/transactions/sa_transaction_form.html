@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load bootstrap3%}
+{% block content %}
+	<div class="content-wrapper" id="tab">
+		<div class="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span><i class="fa fa-pencil"></i> Sales Transaction</span>
+					</div>
+					<div>
+						{% include "includes/sales_tab.html" %}
+					</div>
+					</div>
+				</div>
+			<div class="content padding table-responsive">
+				<div class="wrapper">
+				<form class="" method="post">
+					<input type="hidden" value={{expectedoil}} id="expected_oil">
+					<input type="hidden" value={{expectedcake}} id="expected_cake">
+					<input type="hidden" value={{cakevalue}} id="cake_value">
+					<input type="hidden" value={{oilvalue}} id="oil_value">
+					{% csrf_token %}
+                    {% bootstrap_form form %}
+                    <hr>
+					<button type="reset" class="btn btn-warning m-sm-right"><i class="fa fa-trash-o fa-lg white" aria-hidden="true"></i> Clear</button>
+					<button id="proceed" class="btn btn-primary m-sm-right">Proceed <i class="fa fa-arrow-circle-right fa-lg white " aria-hidden="true"></i></button>				</form>
+				</div>
+			</div>
+		</div> <!-- end of content -->
+		<button id="cost" onclick="myFunction()" class="btn btn-success btn-sm">Compute transaction cost <i class="" aria-hidden="true"></i></button>
+	</div> <!--end of content-wrapper -->
+<!--script for compute transaction button-->
+<script>
+	function myFunction() {
+					var a =document.getElementById('id_quantity_value').value || 0;
+					var b =document.getElementById('id_gen_diesel_value').value || 0;
+					var c =document.getElementById('id_diesel_value').value || 0;
+					var d =document.getElementById('id_other_costs').value || 0;
+					var e = parseFloat(b) + parseFloat(c) + parseFloat(d)
+					var f = parseFloat(a)
+					document.getElementById('id_transaction_cost').value = Math.round(e);
+					document.getElementById('id_transaction_income').value = Math.round(f);
+				}
+</script>
+
+
+<script type="text/javascript">
+			$(document).ready(function(){
+
+				//script Quantity value and transaction income
+
+				//script gen diesel value
+				$('#id_gen_diesel_rate, #id_gen_diesel_litres').on('input',function(e){
+					const gen_diesel_litres = parseInt($('#id_gen_diesel_litres').val()) || 0;
+					const gen_diesel_rate = parseInt($('#id_gen_diesel_rate').val()) || 0;
+					const gen_diesel_value = (gen_diesel_litres * gen_diesel_rate);
+					$('#id_gen_diesel_value').val(gen_diesel_value);
+				});
+
+				//script diesel value
+				$('#id_diesel_rate, #id_diesel_litres').on('input',function(e){
+					const diesel_litres = parseInt($('#id_diesel_litres').val()) || 0;
+					const diesel_rate = parseInt($('#id_diesel_rate').val()) || 0;
+					const diesel_value = (diesel_litres * diesel_rate);
+					$('#id_diesel_value').val(diesel_value);
+				});
+
+
+				$('#id_product_quantity, #id_product_discount,#id_product_name,#id_product_rate').on('input',function(e){
+					var p_name = ($('#id_product_name').val());
+					if(p_name==3){
+					const product_quantity = parseFloat($('#id_product_quantity').val()) || 0;
+					const product_discount = parseFloat($('#id_product_discount').val()) || 0;
+					const expectedoil = parseFloat($('#expected_oil').val()) || 0;
+					const expected_oil = ((product_quantity - product_discount) / expectedoil)
+					$('#id_expected_oil').val(expected_oil);
+					} else if(p_name==1){
+					const product_quantity = parseFloat($('#id_product_quantity').val()) || 0;
+					const product_discount = parseFloat($('#id_product_discount').val()) || 0;
+					const expectedoil = parseFloat($('#expected_oil').val()) || 0;
+					const expected_oil = 0 - (product_quantity - product_discount)
+					$('#id_expected_oil').val(expected_oil);
+					}
+					else{
+					const expected_oil = 0
+					$('#id_expected_oil').val(expected_oil);
+					}
+
+				});
+
+
+				$('#id_product_quantity, #id_product_discount,#id_product_name,#id_product_rate, #id_deductions').on('input',function(e){
+				var p_name = ($('#id_product_name').val());
+				if(p_name==1){
+					const product_quantity = parseInt($('#id_product_quantity').val()) || 0;
+					const product_discount = parseInt($('#id_product_discount').val()) || 0;
+					const product_rate = parseFloat($('#id_product_rate').val()) || 0;
+					const deductions = parseFloat($('#id_deductions').val()) || 0;
+					const oilvalue = parseFloat($('#oil_value').val()) || 0;
+					const quantity_value =  (((product_quantity - product_discount) * product_rate * oilvalue) - deductions);
+					const expected_cake = 0;
+					const cake_value = 0;
+					$('#id_cake_value').val(cake_value);
+					$('#id_expected_cake').val(expected_cake);
+					$('#id_quantity_value').val(quantity_value);
+					}
+				else if (p_name==2){
+					const product_quantity = parseInt($('#id_product_quantity').val()) || 0;
+					const product_discount = parseInt($('#id_product_discount').val()) || 0;
+					const product_rate = parseFloat($('#id_product_rate').val()) || 0;
+					const deductions = parseFloat($('#id_deductions').val()) || 0;
+					const oilvalue = parseFloat($('#oil_value').val()) || 0;
+					const expected_cakes = -(product_quantity - product_discount)
+					const quantity_value =  (((product_quantity - product_discount) * product_rate) - deductions);
+					const expected_cake = parseFloat($('#id_expected_cake').val()) || 0;
+				    const cake_values = -(+ expected_cake * 30000);
+					$('#id_cake_value').val(Math.round(cake_values));
+					$('#id_expected_cake').val(expected_cakes);
+					$('#id_quantity_value').val(quantity_value);
+
+				}else{
+					const expected_cake = 0;
+					$('#id_expected_cake').val(expected_cake);
+					}
+				});
+				$(".form-control").css({'height': '32px', 'width': '500px'});
+				$("#tab").css({'width': '600px', 'margin-left': '70px'});
+				$("#cost").css({'width': '165px','height': '31px', 'font-size': '12px','margin-left': '50px', 'margin-bottom': '10px' });
+				$(".wrapper").css({'justify-content': 'center', 'display': 'flex'});
+			});
+</script>
+{% endblock content %}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load humanize %}
+<html lang="en" dir="ltr">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Forebagro</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<br>
+<div class="col-sm-8 title" >
+    <h3><span id="summary" class="label label-success"> Transactions Summary from {{start}} to {{end}}.</span></h3>
+        <a href="{% url 'transactions:view_summary' %}" type="submit" title="go back to app" class="btn btn-primary btn-sm">Go back  <i class="fa fa-repeat"></i></a>
+     <br>
+</div>
+<div class="content-wrapper">
+	<div class="content">
+		<div class="head">
+			<div class="row">
+			</div>
+		</div>
+		<div class="content padding table-responsive">
+			<table class="table table-condensed table-hover table-bordered">
+				<thead >
+                <tr class="thead-hover success"><th>#</th>
+                        <th class = "text-center" style=font-size:97%><small>Date Initiated</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Clientele Name</small></th>
+						<th class = "text-center" style=font-size:97%><small>Total Quantity</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Rate (&#8358;)</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Expected Oil</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Total expected Oil</small></th>
+						<th class = "text-center" style=font-size:97%><small>Expected Cake</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Cost (&#8358;)</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Total Cost (&#8358;) </small></th>
+                        <th class = "text-center" style=font-size:97%><small>Income (&#8358;)</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Total Income (&#8358;)</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Batch Tracker</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Batch Boolean</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Batch Cost (&#8358;)</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Cost Per Ton (&#8358;)</small></th>
+					</tr>
+				</thead>
+				<tbody>
+                         {% for q in qp %}
+                        <tr style=font-size:90%>
+                            <td><small></small></td>
+                            <td><small></small></td>
+                            <td style=font-size:108%>Opening Balance</td>
+                            <td><small></small></td>
+                            <td><small></small></td>
+                            <td><small></small></td>
+                            <td style=font-weight:bolder>{{q.expected_oil|floatformat:2}}</td>
+                            <td style=font-weight:bolder>{{q.expected_cake|floatformat:2}}</td>
+                            <td><small></small></td>
+                            <td style=font-weight:bolder>{{q.transaction_cost|stringformat:'0.2f'|intcomma}}</td>
+                            <td><small></small></td>
+                            <td style=font-weight:bolder><small></small>{{q.transaction_income|stringformat:'0.2f'|intcomma}} </td>
+                            <td style=font-weight:bolder><small></small>{{qy}}</td>
+                             <td><small></small></td>
+                            <td><small></small></td>
+                             <td><small></small></td>
+
+						</tr>
+                         {%empty%}
+                         {%endfor%}
+
+
+					 {% for q in qs %}
+						<tr>
+                            <td style=font-size:85%><b>{{forloop.counter}}</b>. </td>
+                            <td style=font-size:87%><small></small>{{ q.date_initiated|date:"SHORT_DATE_FORMAT" }}</td>
+                            <td style=font-size:92%><small>{{q.clientele_name}}</small></td>
+                            <td><small>{{q.product_quantity|stringformat:'0.2f'|intcomma}}</small></td>
+                            <td><small>{{q.product_rate}}</small></td>
+                            <td><small>{{q.expected_oil|floatformat:2}}</small></td>
+                            <td><small>{{q.t_expected_oil|floatformat:2}}</small></td>
+                            <td><small>{{q.expected_cake|floatformat:2}}</small></td>
+                            <td><small>{{q.transaction_cost|stringformat:'0.2f'|intcomma}}</small></td>
+                            <td><small>{{q.t_cost|stringformat:'0.2f'|intcomma}}</small></td>
+                            <td><small>{{q.transaction_income|stringformat:'0.2f'|intcomma}}</small></td>
+                            <td><small>{{q.t_income|stringformat:'0.2f'|intcomma}}</small> </td>
+                            <td><small>{{q.BT|stringformat:'0.2f'|intcomma}}</small></td>
+                            <td><small>{{q.BB}}</small></td>
+                            <td><small>{{q.BC|stringformat:'0.2f'|intcomma}}</small></td>
+                            <td><small>{{q.CPT|stringformat:'0.2f'|intcomma}}</small></td>
+						</tr>
+					{%empty%}
+					{% endfor %}
+                  {% for q in qr %}
+                        <tr class="danger" style=font-size:90%>
+                           <td><small></small></td>
+                            <td><small></small></td>
+                            <td style=font-size:108%>Closing Balance</td>
+                            <td><small></small></td>
+                            <td><small></small></td>
+                            <td></td>
+                            <td style=font-weight:bolder>{{q.expected_oil|floatformat:2}}</td>
+                            <td style=font-weight:bolder>{{q.expected_cake|floatformat:2}}</td>
+                            <td></td>
+                            <td style=font-weight:bolder>{{q.transaction_cost|stringformat:'0.2f'|intcomma}}</td>
+                            <td ><small></small></td>
+                            <td style=font-weight:bolder><small></small>{{q.transaction_income|stringformat:'0.2f'|intcomma}} </td>
+                            <td><small></small></td>
+                             <td><small></small></td>
+                            <td><small></small></td>
+                            <td><small></small></td>
+						</tr>
+                         {%empty%}
+                         {%endfor%}
+                           <hr>
+				</tbody>
+			</table>
+
+            <hr>
+		</div>
+	</div> <!-- end of content -->
+</div> <!--end of content-wrapper -->
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#summary").css({'background': ''});
+			$("#xls").css({'background': 'grey', 'outline': 'none', 'border':'none'});
+			});
+</script>
+</body>
+</html>

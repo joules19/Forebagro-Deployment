@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content-wrapper">
+	<div class="content">
+		<div class="head">
+			<div class="row">				
+				<div class="col-sm-8 title" >
+					<span class="fa fa-book"></span>Clientele List
+				</div>
+				<div class="col-sm-4">
+<!--					<form>					-->
+<!--						<div class="input-group search-box" style="margin-top:-5px;margin-bottom:-120px">-->
+<!--							<input type="text" class="form-control" name="clientele_query" placeholder="Search for clientele">-->
+<!--						      <span class="input-group-btn">-->
+<!--						        <button class="btn btn-default" type="submit"><i class="fa fa-search fa-fw"></i></button>-->
+<!--						      </span>-->
+<!--						</div>-->
+<!--					</form>-->
+				</div>
+			</div>
+		</div>
+
+		<div class="content padding table-responsive">
+			<table class="table table-hover table-condensed w-auto" width="647">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Address</th>
+						<th>Contact Number</th>
+						<th>Customer Type</th>
+						<th><center>Actions</center></th>
+					</tr>
+				</thead>
+				<tbody>								
+					
+					{% for c in clienteles %}
+						<tr>
+							<td>{{ c.clientele_name }}</td>
+							<td>{{ c.clientele_address }}</td>
+							<td>{{ c.clientele_contact_number }}</td>
+							<td>{{ c.clientele_type }}</td>
+							<td class="action-container" align="center">
+								{% if perms.clientele.change_clientele %}
+								<a  href="{% url 'clientele:update' id=c.id %}" class="btn btn-warning btn-sm" title="Edit Clientele Data">
+									<span class="fa fa-edit fa-lg"></span> Edit
+								</a>
+								{% else %}
+								<a class="btn btn-warning btn-sm" title="Edit Clientele Data">
+									<span class="fa fa-edit fa-lg"></span> Edit
+								</a>
+								{% endif %}
+
+								{% if perms.clientele.delete_clientele %}
+								<a id="delete-btn" href="{% url 'clientele:delete' pk=c.id %}"  class="btn btn-danger btn-delete" title="Delete Clientele">
+									<span class="fa fa-trash-o fa-lg"></span> Delete
+								</a>
+								{% else %}
+								<a href="" id="delete" class="btn btn-danger btn-delete" title="Delete Clientele">
+									<span class="fa fa-trash-o fa-lg"></span> Delete
+								</a>
+								{% endif %}
+							</td>
+						</tr>
+					{%empty%}
+					{% endfor %}
+				</tbody>
+			</table>
+			{% if clienteles.has_other_pages %}
+  <ul class="pagination">
+    {% if clienteles.has_previous %}
+      <li><a href="?page={{ clienteles.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in clienteles.paginator.page_range %}
+      {% if clienteles.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if clienteles.has_next %}
+<li><a href="?page={{ clienteles.next_page_number }}">&raquo;</a></li>    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+		</div>
+	</div> <!-- end of content -->
+
+</div> <!--end of content-wrapper -->
+<script type="text/javascript">
+		$(document).ready(function(){
+
+		});
+</script>
+{% endblock content %}

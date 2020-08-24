@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load humanize %}
+<html lang="en" dir="ltr">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Forebagro</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<br>
+<div class="col-sm-8" >
+    <h3 style=font-weight:bolder><span id="name" class="label label-success"> Customer Name</span>: {{names}}</h3>
+
+    <h4 style=font-weight:bolder><span id="open" class="label label-success"> Opening Balance as at {{start}}</span> : &#8358; {{OpeningBalanceAtStart}}</h4>
+
+    <h4 style=font-weight:bolder><span id="close" class="label label-success"> Closing Balance as at {{end}}</span> : &#8358; {{OpeningBalanceAtEnd}}</h4>
+    <h4 style=font-weight:bolder><span  class="label label-success"> Current Balance</span> : &#8358; {{CurrentBalance|stringformat:'0.2f'|intcomma}}</h4>
+
+</div>
+    <div class="container">
+        <br>
+        <a href="{% url 'transactions:view_customer_statement' %}" type="submit" title="go back to app" class="btn btn-primary  pull-right btn-sm">Go back  <i class="fa fa-repeat"></i></a>
+    </div>
+
+<div class="content-wrapper">
+	<div class="content">
+		<div class="head">
+			<div class="row">
+			</div>
+		</div>
+		<div class="content padding table-responsive">
+			<table class="table table-condensed table-hover table-bordered">
+				<thead >
+                <tr class="thead-hover success"><th>#</th>
+                        <th class = "text-center" style=font-size:97%><small>Narration</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Transaction Type</small></th>
+						<th class = "text-center" style=font-size:97%><small>Transaction Amount (&#8358;)</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Amount Paid | Collected (&#8358;)</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Outstanding (&#8358;)</small></th>
+                        <th class = "text-center" style=font-size:97%><small>Credit </small></th>
+                        <th class = "text-center" style=font-size:97%><small>Debit </small></th>
+						<th class = "text-center" style=font-size:97%><small>Balance (&#8358;)</small></th>
+					</tr>
+				</thead>
+				<tbody>
+					 {% for q in qdd %}
+						<tr>
+                            <td style=font-size:85%><b>{{forloop.counter}}</b>. </td>
+                            <td style=font-size:87%><small></small>{{ q.narration }}</td>
+                            <td style=font-size:92%>{{q.T_TYPE}}</td>
+                            <td><small>{{q.COST}}</small></td>
+                            <td><small>{{q.AMOUNT_PAID}}</small></td>
+                            <td><small>{{q.OUTSTANDING|floatformat:2}}</small></td>
+                            <td><small>{{q.CR|floatformat:2}}</small></td>
+                            <td><small>{{q.DR|floatformat:2}}</small></td>
+                            <td><small>{{q.balance|floatformat:2}}</small></td>
+                        </tr>
+					{%empty%}
+					{% endfor %}
+                  {% for q in qr %}
+                        <tr class="danger" style=font-size:90%>
+                           <td><small></small></td>
+                            <td><small></small></td>
+                            <td style=font-size:108%>Closing Balance</td>
+                            <td><small></small></td>
+                            <td><small></small></td>
+                            <td></td>
+                            <td style=font-weight:bolder>{{q.expected_oil|floatformat:2}}</td>
+                            <td style=font-weight:bolder>{{q.expected_cake|floatformat:2}}</td>
+						</tr>
+                         {%empty%}
+                         {%endfor%}
+                           <hr>
+				</tbody>
+			</table>
+
+            <hr>
+		</div>
+	</div> <!-- end of content -->
+</div> <!--end of content-wrapper -->
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#summary").css({'background': ''});
+			$("#xls").css({'background': 'grey', 'outline': 'none', 'border':'none'});
+			});
+</script>
+</body>
+</html>

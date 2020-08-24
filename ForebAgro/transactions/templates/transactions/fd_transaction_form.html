@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load bootstrap3%}
+{% block content %}
+	<div class="content-wrapper" id="tab">
+		<div class="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span><i class="fa fa-pencil"></i> Foreb-Debt Payment</span>
+					</div>
+					<div>
+						{% include "includes/foreb_tab.html" %}
+					</div>
+					</div>
+				</div>
+			<div class="content padding table-responsive">
+				<div class="wrapper">
+				<form method="post">
+					{% csrf_token %}
+                    {% bootstrap_form form %}
+                    <hr>
+					<button type="reset" class="btn btn-warning m-sm-right"><i class="fa fa-trash-o fa-lg white" aria-hidden="true"></i> Clear</button>
+					<button id="proceed" class="btn btn-primary m-sm-right">Proceed <i class="fa fa-arrow-circle-right fa-lg white" aria-hidden="true"></i></button>
+				</form>
+					</div>
+			</div>
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".form-control").css({'height': '32px', 'width': '500px'});
+			$("#tab").css({'width': '600px', 'margin-left': '70px'});
+			$(".wrapper").css({'justify-content': 'center', 'display': 'flex'});
+			function showTouched(e){
+				alert(e.data.message);
+			}
+			var proceedmsg = { message: 'Be sure of transaction before proceeding!'};
+			$("#procee").on("mouseover", proceedmsg, showTouched);
+		});
+</script>
+{% endblock content %}

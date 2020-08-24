@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.body
+{
+margin: 0;
+background-image: url('/static/images/abs.jpg');
+margin-bottom: 148px;
+}
+
+.body input,select
+    {
+        border: none;
+        background-color: rgb(232, 240, 254) !important;
+        outline: none;
+        height: 35px;
+        color: black;
+        font-size: 14px;
+        margin-top:0px;
+        margin-bottom:0px;
+    }
+
+.user
+{
+position: absolute;
+top: calc(10px/2);
+left: calc(20% - 50px);
+overflow: hidden;
+width: 60%;
+height: 50px;
+border-radius: 10%;
+margin-left: 3px;
+}
+
+#cost
+}
+top: calc(18px/2);
+left: calc(16% - 50px);
+overflow: hidden;
+width: 73px;
+height: 73px;
+border-radius: 20%;
+}
+
+.name
+{
+text-align: center;
+font-size: 30%;
+}
+
+.side-nav li
+{
+position: relative;
+display: block;
+}
+
+.side-nav li ul
+{
+position: relative;
+margin:0px;
+display: none;
+
+.side-nav a:hover
+{
+position: relative;
+background-color : #009;
+color: #fff;
+
+.tar:link
+{
+color: black;
+}
+
+.tar:hover
+{
+color: white;
+font-size: 30px;
+color: white;
+}
+
+
+.welcome{
+background: white;
+}
+
+
+#reg{
+        font-size: 14px;
+        }
+
+.container-box {
+    position: relative;
+    width: 1200px;
+    height: 300px;
+    margin: 70px auto;
+
+}
+
+.box {
+    position: relative;
+    width: calc(300px - 30px);
+    height: calc(200px - 30px);
+    margin: 15px;
+    background: #000;
+    float: left;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+
+

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+<html lang="en" dir="ltr">
+  <head>
+  <meta name="viewport" content="width=device-width" initial-scale=1>
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <title>Forebagro</title>
+  <link rel="short icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+  <script type="text/javascript" src="{% static 'js/script.js' %}" defer></script>
+    <style>
+    .contact
+    {
+      position: relative;
+      min-height: 100vh;
+      padding: 50px 100px;
+      display: flex;
+      justify-content: center;
+      margin-top: -20px;
+      align-items: center;
+      flex-direction: column;
+      background-image: url(images/globe.jpg);
+      background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)), url("{% static 'images/kernel.jpg' %}");
+      background-size: cover;
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="brand-title"><span><a href="{% url 'home' %}"><img class="logo" src= "{% static 'images/foreblogo.png' %}"></a></span></div>
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div class="navbar-links">
+        <ul style="font-family: 'Alata';">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="contact">
+      <div class="content">
+        <h2 style="font-size: 40px;font-family: 'Alata';font-weight:lighter;color: #fff">Contact <span style="color:#89c227;">Us</span></h2>
+        <p style="font-size: 16px;font-family: 'Alata';font-weight:lighter;">Please use this form for inquiries, order requests, or to give us feedback on our products and services.</p>
+      </div>
+      <div class="contact-container">
+        <div class="contactInfo">
+          <div class="box">
+            <div class="icon"><i style="color:white" class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <div class="text">
+              <h3 style="font-family: 'Alata';">Address</h3>
+              <p style="font-family: 'Alata';">Head Office & Factory Plots 2 & 3,<br>Block Q Ilesa Road, Government Industrial Estate,<br>Akure, Ondo State.</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon"><i class="fa fa-phone" style="color:white" aria-hidden="true"></i></div>
+            <div class="text">
+              <h3 style="font-family: 'Alata';">Phone</h3>
+              <p style="font-family: 'Alata';">(+234) 8174620250 | (+234) 8174620243</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon"><i class="fa fa-envelope-o" style="color:white" aria-hidden="true"></i> </div>
+            <div class="text">
+              <h3 style="font-family: 'Alata';">Email</h3>
+              <p style="font-family: 'Alata';">info@forebagroproducts .com | sales@forebagroproducts.com</p>
+
+            </div>
+          </div>
+        </div>
+        <div class="contactForm">
+          <form method="post" action="{% url 'contact:send' %}">
+             {% if messages %}
+    <ul class="messagelist">
+        {% for message in messages %}
+            <li>{{ message.message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+            <h1 style="font-family: 'Alata';color:#89c227;">Send Message</h1>
+               {% csrf_token %}
+               {% bootstrap_form form %}
+            <div class="inputBox">
+              <input type="submit" name="" value="Send">
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  <section class="footer" >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="{% static 'images/foreblogo.png' %}" alt="" class="footer-logo">
+            <p>Address:
+              Head Office & Factory
+              Plots 2 & 3, Block Q Ilesa Road,
+              Government Industrial Estate,
+              Akure, Ondo State</p>
+          </div>
+
+          <div class="col-md-4">
+            <h4 style="font-family: 'Alata';">Quick Contact</h4>
+            <p><i class="fa fa-phone-square"></i> (+234) 8174620250 | (+234) 8174620243</p>
+            <p><i class="fa fa-envelope"></i> info@forebagroproducts.com | sales@forebagroproducts.com</p>
+            <p><i class="fa fa-whatsapp"></i> (+234) 8035092513</p>
+            <p><i class="fa fa-home"></i> Akure, Ondo State, Nigeria</p>
+          </div>
+          <div class="col-md-4">
+            <h4 style="font-family: 'Alata';">Follow Us On</h4>
+            <p><i class="fa fa-facebook-official"></i> Facebook</p>
+            <p><i class="fa fa-linkedin-square"></i> Linkedin</p>
+            <p><i class="fa fa-twitter"></i> Twitter</p>
+          </div>
+        </div><hr>
+        <p class="copyright"> Copyright &copy; 2020 Forebagro Products Nig. Ltd</p>
+      </div>
+      <a class="gotopbtn" href="#"><i class="fa fa-arrow-up"></i></a>
+    </section>
+  </body>
+</html>

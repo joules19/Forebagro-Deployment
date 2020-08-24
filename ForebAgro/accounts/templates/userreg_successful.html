@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="content-wrapper" id="tab">
+		<div class="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span class="fa fa-pencil"></span> User Registration
+					</div>
+				</div>
+			</div>
+
+			<div class="content padding table-responsive">
+					<div class="wrapper">
+		            <div class="jumbotron">
+                        <h3 id="reg"><em>User registration successful!</em></h3>
+                    </div>
+					</div>
+			</div>
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#tab").css({'width': '600px', 'margin-left': '70px'});
+		});
+</script>
+{% endblock content %}

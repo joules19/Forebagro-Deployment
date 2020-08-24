@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+	
+{% block content %}
+
+	<div class="content-wrapper" id="tab">
+		<div class="content">
+			<div class="head">
+				<div class="row">				
+					<div class="col-sm-7 title" >
+						<span class="fa fa-user"></span>Clientele Registration
+					</div>
+				</div>
+			</div>
+
+			<div class="content padding table-responsive">
+				<div class="wrapper">
+				<form method="post" autocomplete="off">
+					{% csrf_token %}
+						{{ form.management_form }}
+						{%for field in form%}
+							<div class="form-group">
+								<label class="form-label">{{field.label}}</label> <small class="text-success">{#field.help_text#}</small>
+									{{field.errors}}
+								{{field}}
+							</div>
+						{%endfor%}
+					<br><hr>
+					<button type="reset" class="btn btn-warning m-sm-right "><i class="fa fa-trash-o white fa-lg" aria-hidden="true"></i> Clear</button>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o white " aria-hidden="true"></i> Save Info</button>
+				</form>
+					</div>
+			</div>
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".form-control").css({'height': '32px', 'width': '500px'});
+			$("#tab").css({'width': '600px', 'margin-left': '70px'});
+			$(".wrapper").css({'justify-content': 'center', 'display': 'flex'});
+			function showTouched(e){
+				alert(e.data.message);
+			}
+			var proceedmsg = { message: 'Be sure of transaction before proceeding!'};
+			$("#proceed").on("mouseover", proceedmsg, showTouched);
+		});
+</script>
+{% endblock content %}

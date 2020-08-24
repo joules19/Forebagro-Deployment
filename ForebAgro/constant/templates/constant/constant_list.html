@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block javascript %}
+{% endblock %}
+{% block content %}
+
+<div class="content-wrapper">
+	<div class="content">
+		<div class="head">
+			<div class="row">
+				<div class="col-sm-8 title" >
+					<span class="fa fa-book"></span>Constant List
+				</div>
+
+				<div class="col-sm-4" >
+					<form>
+						<div class="input-group search-box search"  style="margin-top:-5px;margin-bottom:-120px">
+							<input type="text"  class="form-control" id="search" name="constants_query" placeholder="Search for constants">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="submit"><i class="fa fa-search fa-fw"></i></button>
+						      </span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="content padding table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Constant Name</th>
+						<th>Constant Value</th>
+						<th>Description</th>
+						<th><center>Actions</center></th>
+					</tr>
+				</thead>
+				<tbody>
+
+					{% for c in constants %}
+						<tr>
+							<td><b>{{forloop.counter}}</b>. {{ c.constant_name }}</td>
+							<td>{{ c.constant_value }}</td>
+							<td>{{ c.description }}</td>
+							<td class="action-container" align="center">
+								{% if perms.constants.change_constant %}
+								<a  href="{% url 'constants:update' id=c.id %}" class="btn btn-warning btn-sm action" title="Edit Constant Data">
+									<span class="fa fa-edit fa-lg"></span> Edit
+								</a>
+								{% else %}
+								<a class="btn btn-warning btn-sm action" title="Edit Constant Data">
+									<span class="fa fa-edit fa-lg"></span> Edit
+								</a>
+								{% endif %}
+
+							</td>
+						</tr>
+					{%empty%}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div> <!-- end of content -->
+</div> <!--end of content-wrapper -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

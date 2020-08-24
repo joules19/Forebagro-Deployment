@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="content-wrapper" id="tab">
+		<div class="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span class="fa fa-pencil"></span> Change Password
+					</div>
+				</div>
+			</div>
+
+			<div class="content padding table-responsive">
+		            <div class="jumbotron">
+                        <p><em>Password Change Successful!</em>&nbsp;&nbsp;<i style="color:red" class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></p>
+					</div>
+			</div>
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#tab").css({'width': '600px', 'margin-left': '70px'});
+		});
+</script>
+{% endblock content %}

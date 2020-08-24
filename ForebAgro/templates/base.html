@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Forebagro</title>
+	<link rel="short icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i"/>
+	<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    <!--date picker css and javascript-->
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}"/>
+	<script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/actions.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/calendar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#button").css({'background-color': 'grey', 'height': '34px','margin-top': '-1px', 'border':'none', 'border-radius':'10px'});
+			$(".white").css({'color': 'white',});welcome
+			$("#welcome").css({'color': 'white', 'font-weight':'bolder',  });
+			$("#white").css({'color': 'black',  });
+			$("#whit").css({'color': 'black',  });
+			var dt = new Date();
+			document.getElementById("datetime").innerHTML=dt.toLocaleString();
+		});
+</script>
+
+</head>
+
+<body>
+	<section class="body">
+	<div  class="container-fluid">
+		<div class="row no-gutters" style="margin-left:-15px;position: relative;margin-right:-15px ">
+			<div class="col-sm-3 col col-left">
+				<div class="content">
+					<div class="project-title">
+						<div class="nav-logo">
+							<a href="{% url 'transactions:home' %}"><img src= "{% static 'images/foreblogo1.png' %}" class="user"></a>
+						</div>
+<!--						<div class="nav-title">-->
+<!--							<h4 id="foreb">Forebagro Ltd.</h4>-->
+<!--						</div>-->
+					</div>
+
+					<ul class="side-nav">
+						<li>
+							<a ><span class="fa fa-dashboard icon"></span>User Management</a>
+							<ul class="nav nav-pills nav-stacked">
+								{% if perms.user.add_user %}
+								<li class="active"><a href="{% url 'accounts:add_new_user' %}">Add New User <br><small id="whit">Authorized user only</small></a></li>
+								{% else %}
+								<li class="active"><a href="">Add New User<i class="fa fa-lock fa-lg white pull-right" aria-hidden="true"></i><br><small id="white">Authorized user only</small></a></li>
+								{% endif %}
+								<li class="active"><a href="{% url 'accounts:password_change' id=user.id %}">Change Password</a></li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="{% url 'clientele:clientele_list' %}"><span class="fa fa-user icon"></span>Clientele</a>
+                            <ul class="nav nav-pills nav-stacked">
+								<li class="active"><a href="{% url 'clientele:clientele_list' %}">All Clientele</a></li>
+								<li class="active"><a href="{% url 'clientele:register_clientele' %}">Add New Clientele</a></li>
+								<li class="active"><a href="{% url 'clientele:clientele_creditor' %}">All Creditors</a></li>
+								<li class="active"><a href="{% url 'clientele:clientele_debtor' %}">All Debtors</a></li>
+							</ul>
+						</li>
+
+                        <li>
+							<a><span><i class="fa fa-briefcase icon"></i></span>Transactions</a>
+							<ul class="nav nav-pills nav-stacked" id="roo">
+								<li class="active"><a href="{% url 'transactions:sales' %}">Sales Transactions</a></li>
+								<li class="active"><a href="{% url 'transactions:purchase' %}">Purchase Transactions</a></li>
+								<li class="active"><a href="{% url 'transactions:record_expense' %}">Record An Expense</a></li>
+								<li class="active"><a href="{% url 'transactions:foreb_debt' %}">Foreb-Debt Payment</a></li>
+								<li class="active"><a href="{% url 'transactions:customer_debt' %}">Customer-Debt Payment</a></li>
+							</ul>
+						</li>
+
+						<li>
+							<a><span><i class="fa fa-check-square-o icon"></i></span>Approve Transactions</a>
+							<ul class="nav nav-pills nav-stacked" id="roos">
+								<li class="active"><a href="{% url 'transactions:show_sales' %}"><span class="badge pull-right">{{count_sales}}</span>Sales Transactions</a></li>
+								<li class="active"><a href="{% url 'transactions:show_purchase' %}"><span class="badge pull-right">{{count_purchase}}</span>Purchase Transactions</a></li>
+								<li class="active"><a href="{% url 'transactions:show_foreb' %}"><span class="badge pull-right">{{count_foreb}}</span>Forebagro Debt Payment</a></li>
+								<li class="active"><a href="{% url 'transactions:show_customer' %}"><span class="badge pull-right">{{count_customer}}</span>Customer Debt Payment</a></li>
+								<li class="active"><a href="{% url 'transactions:show_expense' %}"><span class="badge pull-right">{{count_expense}}</span>Expense-Based Transactions</a></li>
+							</ul>
+						</li>
+
+						<li>
+							<a><span><i class="fa fa-eye fa-lg icon"></i></span>Report</a>
+							<ul class="nav nav-pills nav-stacked" id="">
+								<li class="active"><a href="{% url 'transactions:view_summary' %}">Summary</a></li>
+								<li class="active"><a href="{% url 'transactions:view_customer_statement' %}">Customer Statement</a></li>
+							</ul>
+						</li>
+
+						<!--<li>-->
+						<!--	<a href="{% url 'constants:list' %}"><span><i class="fa fa-stack-overflow icon"></i></span>Constants</a>-->
+						<!--</li>-->
+					</ul>
+					<footer>
+						Foreb Agro Products Nig. Ltd<br>
+						Contact Number: 07036470803<br>
+						<span id="datetime"></span>
+					</footer>
+				</div>
+			</div><!--end of left column-->
+
+			<div class="col-sm-9 col-right col">
+				<header id='headers' class="header">
+                  <div class="button pull-right">
+                      <a href="{% url 'accounts:logout' %}" title="Logout" class="label label-primary" id="logout-btn">Log out</a>
+				  </div>
+					<div class="welcome">
+						<p id="welcome"><i>Welcome, </i><span class="label" id="username">{{ user.username }}</span></p>
+						<p><strong><span class="label label-primary" id="email">{{ user.email }}</span></strong></p>
+					</div>
+				</header>
+
+				<div id="body-content" class="padding" style="margin-top:-15px">
+					<div class="message-container">
+					</div>
+					<div id="content">
+						{% block content%}
+						{% endblock content%}
+					</div>
+				</div>
+
+			</div> <!--end of right column-->
+
+		</div><!--end of row-->
+	</div><!--end of container-->
+	</section>
+
+	<section class="empty">
+	  <div class="container">
+        <p> &nbsp;</p>
+      </div>
+    </section>
+
+	<section class="footer">
+      <div class="container">
+        <p id="copyright" class="copyright"> Copyright &copy; 2020 Forebagro Products Nig. Ltd</p>
+      </div>
+    </section>
+</body>
+</html>

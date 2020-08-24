@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{ object }}?</p><br><hr>
+    <button type="submit" class="btn btn-danger" value=""><i class="fa fa-check-circle white fa-lg" aria-hidden="true"></i> Confirm</button>
+    <a href="{% url 'accounts:user_list' %}" class="btn btn-warning"><i class="fa fa-remove fa-lg white" aria-hidden="true"></i> Cancel</a>
+</form>
+{% endblock %}

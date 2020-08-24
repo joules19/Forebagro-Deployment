@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+	<div class="content-wrapper" id="tab">
+		<div class="content">
+			<div class="head">
+				<div class="row">
+					<div class="col-sm-7 title" >
+						<span class="fa fa-user"></span>User Registration
+					</div>
+				</div>
+			</div>
+
+			<div class="content padding table-responsive">
+				<div class="wrapper">
+					<form action="{% url 'accounts:register' %}" method="post">
+						{% csrf_token %}
+						{% bootstrap_form form %}<br><hr>
+						<button class="btn btn-primary m-sm-right"><i class="fa fa-lock fa-lg white" aria-hidden="true"></i> Sign Up</button>
+					</form>
+				</div>
+			</div>
+		</div> <!-- end of content -->
+	</div> <!--end of content-wrapper -->
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".form-control").css({'height': '32px', 'width': '500px'});
+			$("#tab").css({'width': '600px', 'margin-left': '70px'});
+			$(".wrapper").css({'justify-content': 'center', 'display': 'flex'});
+			function showTouched(e){
+				alert(e.data.message);
+			}
+			var proceedmsg = { message: 'Be sure of transaction before proceeding!'};
+			$("#proceed").on("mouseover", proceedmsg, showTouched);
+		});
+</script>
+{% endblock content %}

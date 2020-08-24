@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Forebagro</title>
+    <link rel="short icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+
+</head>
+<body>
+    <section class="login-header">
+      <div class="container">
+         <a href="{% url 'accounts:login' %}"><img src= "{% static 'images/foreblogo.png' %}" alt="logo" class="header-logo"></a>
+      </div>
+
+        <div class="hero">
+        <div class="form-container">
+            <img src= "{% static 'images/forebagrologo.png' %}" class="form-logo">
+        <div class="header"><h2 style="font-family: 'Roboto', Arial, sans-serif">Log in</h2></div>
+        <div class="form-group form-body">
+            <form method="post" action="{% url 'accounts:login' %}"  style="margin: auto" autocomplete=>
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button title="Sign in" class="submitbtn" ><i class="fa fa-lock fa-lg white" aria-hidden="true"></i> Log in </button>
+            </form>
+        </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p id="copyright" class="copyright"> Copyright &copy; 2020 Forebagro Products Nig. Ltd</p>
+    </div>
+    </section></body>
+</html>

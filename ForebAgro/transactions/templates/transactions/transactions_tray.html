@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container container-box">
+        <div class="box">
+            <a href="{% url 'transactions:sales' %}"><div class="box-icon">
+                <h5 style="text-align:center" class="w1-badge">Sales Transactions</h5><span class="num">{{count_sales}}</span>
+            </div></a>
+            <div class="box-content">
+                <a href="{% url 'transactions:show_sales' %}"><h3 class="">{{count_sales}} pending transaction(s)</h3></a>
+            </div>
+        </div>
+        <div class="box">
+            <a href="{% url 'transactions:purchase' %}"><div class="box-icon">
+                <h5 style="text-align:center" class="w1-badge">Purchase Transactions</h5><span class="num">{{count_purchase}}</span>
+            </div></a>
+            <div class="box-content">
+                <a href="{% url 'transactions:show_purchase' %}"><h3 class="">{{count_purchase}} pending transaction(s)</h3></a>
+            </div>
+        </div>
+        <div class="box">
+            <a href="{% url 'transactions:foreb_debt' %}"><div class="box-icon">
+                <h5 style="text-align:center" class="w1-badge">Foreb-Debt</h5><span class="num">{{count_foreb}}</span>
+            </div></a>
+            <div class="box-content">
+                <a href="{% url 'transactions:show_foreb' %}"><h3 class="">{{count_foreb}} pending transaction(s)</h3></a>
+            </div>
+        </div>
+        <div class="box">
+            <a href="{% url 'transactions:customer_debt' %}"><div class="box-icon">
+                <h5 style="text-align:center" class="w1-badge">Customer Debt</h5><span class="num">{{count_customer}}</span>
+            </div></a>
+            <div class="box-content">
+                <a href="{% url 'transactions:show_customer' %}"><h3 class="">{{count_customer}} pending transaction(s)</h3></a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
